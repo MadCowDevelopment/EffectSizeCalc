@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EC6B206C-7960-4A76-B833-AE43ADE4951C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EffectSizeCalc.ViewModels</RootNamespace>
+    <AssemblyName>EffectSizeCalc.ViewModels</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ResultVM.cs" />
+    <Compile Include="CohensSetupVM.cs" />
+    <Compile Include="CohensVM.cs" />
+    <Compile Include="Events\ShowDialogEventArgs.cs" />
+    <Compile Include="Framework\BaseViewModel.cs" />
+    <Compile Include="Framework\CloseRequestEventArgs.cs" />
+    <Compile Include="Framework\IBaseViewModel.cs" />
+    <Compile Include="Framework\IMessageBoxService.cs" />
+    <Compile Include="Framework\IObservableObject.cs" />
+    <Compile Include="Framework\IOpenFileService.cs" />
+    <Compile Include="Framework\IOpenFolderService.cs" />
+    <Compile Include="Framework\ISaveFileService.cs" />
+    <Compile Include="Framework\ISimpleViewModel.cs" />
+    <Compile Include="Framework\IValidatingObject.cs" />
+    <Compile Include="Framework\IViewService.cs" />
+    <Compile Include="Framework\ObservableObject.cs" />
+    <Compile Include="Framework\RelayCommand.cs" />
+    <Compile Include="Framework\SimpleViewModel.cs" />
+    <Compile Include="Framework\ValidatingObject.cs" />
+    <Compile Include="Framework\WPFMessageBoxService.cs" />
+    <Compile Include="Framework\WPFOpenFileService.cs" />
+    <Compile Include="Framework\WPFOpenFolderService.cs" />
+    <Compile Include="Framework\WPFSaveFileService.cs" />
+    <Compile Include="MainWindowVM.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EffectSizeCalc.Calculators\EffectSizeCalc.Calculators.csproj">
+      <Project>{F3556483-8246-477A-9992-BC1CBBC8317C}</Project>
+      <Name>EffectSizeCalc.Calculators</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EffectSizeCalc.ExcelImport\EffectSizeCalc.ExcelImport.csproj">
+      <Project>{2D45FBF2-1ED8-482F-8898-C4F06E46FBFE}</Project>
+      <Name>EffectSizeCalc.ExcelImport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EffectSizeCalc.Models\EffectSizeCalc.Models.csproj">
+      <Project>{D38921F5-D6C2-411A-A675-650F17445B8C}</Project>
+      <Name>EffectSizeCalc.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EffectSizeCalc.ResultExporters\EffectSizeCalc.ResultExporters.csproj">
+      <Project>{4A1750DB-B646-4C65-88F9-41C8C3C98F40}</Project>
+      <Name>EffectSizeCalc.ResultExporters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EffectSizeCalc.TypeGenerator\EffectSizeCalc.TypeGenerator.csproj">
+      <Project>{FD981D6A-992D-4889-ACB4-8EC4B0917E6B}</Project>
+      <Name>EffectSizeCalc.TypeGenerator</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
