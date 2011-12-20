@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EffectSizeCalc.Console", "EffectSizeCalc.Console\EffectSizeCalc.Console.csproj", "{E9235103-A31A-4AB6-A111-03603435AD30}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EffectSizeCalc.ExcelImport", "EffectSizeCalc.ExcelImport\EffectSizeCalc.ExcelImport.csproj", "{2D45FBF2-1ED8-482F-8898-C4F06E46FBFE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5056A25D-A592-41A2-95F0-A0F788C4C100}"
@@ -31,10 +29,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EffectSizeCalc.ResultExporters", "EffectSizeCalc.ResultExporters\EffectSizeCalc.ResultExporters.csproj", "{4A1750DB-B646-4C65-88F9-41C8C3C98F40}"
 EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = EffectSizeCalc.vsmdi
 	EndGlobalSection
@@ -47,16 +41,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E9235103-A31A-4AB6-A111-03603435AD30}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{E9235103-A31A-4AB6-A111-03603435AD30}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{E9235103-A31A-4AB6-A111-03603435AD30}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{E9235103-A31A-4AB6-A111-03603435AD30}.Debug|x86.ActiveCfg = Debug|x86
-		{E9235103-A31A-4AB6-A111-03603435AD30}.Debug|x86.Build.0 = Debug|x86
-		{E9235103-A31A-4AB6-A111-03603435AD30}.Release|Any CPU.ActiveCfg = Release|x86
-		{E9235103-A31A-4AB6-A111-03603435AD30}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{E9235103-A31A-4AB6-A111-03603435AD30}.Release|Mixed Platforms.Build.0 = Release|x86
-		{E9235103-A31A-4AB6-A111-03603435AD30}.Release|x86.ActiveCfg = Release|x86
-		{E9235103-A31A-4AB6-A111-03603435AD30}.Release|x86.Build.0 = Release|x86
 		{2D45FBF2-1ED8-482F-8898-C4F06E46FBFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2D45FBF2-1ED8-482F-8898-C4F06E46FBFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D45FBF2-1ED8-482F-8898-C4F06E46FBFE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -160,5 +144,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 EndGlobal
