@@ -45,9 +45,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HedgesSetupVM.cs" />
+    <Compile Include="IEffectSizeSetupVM.cs" />
     <Compile Include="ResultVM.cs" />
     <Compile Include="CohensSetupVM.cs" />
-    <Compile Include="CohensVM.cs" />
+    <Compile Include="EffectSizeVM.cs" />
     <Compile Include="Events\ShowDialogEventArgs.cs" />
     <Compile Include="Framework\BaseViewModel.cs" />
     <Compile Include="Framework\CloseRequestEventArgs.cs" />

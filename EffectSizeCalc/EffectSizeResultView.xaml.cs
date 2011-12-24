@@ -3,9 +3,9 @@
     /// <summary>
     /// Interaction logic for CohensResultView.xaml
     /// </summary>
-    public partial class ResultView
+    public partial class EffectSizeResultView
     {
-        public ResultView()
+        public EffectSizeResultView()
         {
             InitializeComponent();
         }

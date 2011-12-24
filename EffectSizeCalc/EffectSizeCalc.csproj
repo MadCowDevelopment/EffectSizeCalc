@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="ResultView.xaml">
+    <Page Include="EffectSizeResultView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -63,7 +63,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CohensView.xaml">
+    <Page Include="EffectSizeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -75,6 +75,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="HedgesSetupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -83,17 +87,20 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ResultView.xaml.cs">
-      <DependentUpon>ResultView.xaml</DependentUpon>
+    <Compile Include="EffectSizeResultView.xaml.cs">
+      <DependentUpon>EffectSizeResultView.xaml</DependentUpon>
     </Compile>
     <Compile Include="CohensSetupView.xaml.cs">
       <DependentUpon>CohensSetupView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CohensView.xaml.cs">
-      <DependentUpon>CohensView.xaml</DependentUpon>
+    <Compile Include="EffectSizeView.xaml.cs">
+      <DependentUpon>EffectSizeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="GenericDialog.xaml.cs">
       <DependentUpon>GenericDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HedgesSetupView.xaml.cs">
+      <DependentUpon>HedgesSetupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

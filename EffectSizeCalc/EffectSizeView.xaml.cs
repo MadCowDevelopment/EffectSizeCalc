@@ -1,11 +1,11 @@
 ﻿namespace EffectSizeCalc
 {
     /// <summary>
-    /// Interaction logic for CohensSetupView.xaml
+    /// Interaction logic for CohensView.xaml
     /// </summary>
-    public partial class CohensSetupView
+    public partial class EffectSizeView
     {
-        public CohensSetupView()
+        public EffectSizeView()
         {
             InitializeComponent();
         }

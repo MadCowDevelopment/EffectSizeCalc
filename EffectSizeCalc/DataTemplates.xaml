@@ -4,16 +4,20 @@
     xmlns:ViewModels="clr-namespace:EffectSizeCalc.ViewModels;assembly=EffectSizeCalc.ViewModels" 
     xmlns:EffectSizeCalc="clr-namespace:EffectSizeCalc">
     
-    <DataTemplate DataType="{x:Type ViewModels:CohensVM}">
-        <EffectSizeCalc:CohensView/>
+    <DataTemplate DataType="{x:Type ViewModels:EffectSizeVM}">
+        <EffectSizeCalc:EffectSizeView/>
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type ViewModels:CohensSetupVM}">
         <EffectSizeCalc:CohensSetupView/>
     </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type ViewModels:HedgesSetupVM}">
+        <EffectSizeCalc:HedgesSetupView/>
+    </DataTemplate>
 
     <DataTemplate DataType="{x:Type ViewModels:ResultVM}">
-        <EffectSizeCalc:ResultView/>
+        <EffectSizeCalc:EffectSizeResultView/>
     </DataTemplate>
     
 </ResourceDictionary>

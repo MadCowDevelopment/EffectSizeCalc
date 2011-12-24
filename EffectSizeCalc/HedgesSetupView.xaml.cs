@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace EffectSizeCalc
 {
     /// <summary>
-    /// Interaction logic for CohensView.xaml
+    /// Interaction logic for HedgesSetupView.xaml
     /// </summary>
-    public partial class CohensView : UserControl
+    public partial class HedgesSetupView : UserControl
     {
-        public CohensView()
+        public HedgesSetupView()
         {
             InitializeComponent();
         }

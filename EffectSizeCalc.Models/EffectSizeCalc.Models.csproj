@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="EffectSizeResult.cs" />
     <Compile Include="CohensSettings.cs" />
+    <Compile Include="HedgesSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using EffectSizeCalc.Calculators;
 using EffectSizeCalc.ExcelImport;
+using EffectSizeCalc.Models;
 using EffectSizeCalc.ResultExporters;
 using EffectSizeCalc.TypeGenerator;
 using EffectSizeCalc.ViewModels.Events;
@@ -11,12 +12,10 @@ namespace EffectSizeCalc.ViewModels
 {
     public class MainWindowVM : SimpleViewModel
     {
-        private readonly ICohensCalculator _cohensCalculator;
         private readonly IOpenFileService _openFileService;
         private readonly ISaveFileService _saveFileService;
         private readonly IExcelImporter _excelImporter;
         private readonly IDynamicListGenerator _dynamicListGenerator;
-        private readonly IResultExporter _resultExporter;
 
         private ICommand _openCommand;
 
@@ -29,21 +28,18 @@ namespace EffectSizeCalc.ViewModels
         private ExcelDataSet _excelDataSet;
 
         public MainWindowVM(
-            ICohensCalculator cohensCalculator,
             IOpenFileService openFileService,
             ISaveFileService saveFileService,
             IExcelImporter excelImporter, 
-            IDynamicListGenerator dynamicListGenerator,
-            IResultExporter resultExporter)
+            IDynamicListGenerator dynamicListGenerator)
         {
-            _cohensCalculator = cohensCalculator;
             _openFileService = openFileService;
             _saveFileService = saveFileService;
             _excelImporter = excelImporter;
             _dynamicListGenerator = dynamicListGenerator;
-            _resultExporter = resultExporter;
 
-            //OpenExcelSheet("data.xlsx");
+            // TODO: Unomment in release!
+            OpenExcelSheet("data.xlsx");
         }
 
         public dynamic Expando
@@ -111,13 +107,33 @@ namespace EffectSizeCalc.ViewModels
 
         private void OnCalculateCohens()
         {
-            RaiseDialogRequested(
-                new ShowDialogEventArgs(new CohensVM(_cohensCalculator, _saveFileService, _resultExporter, _excelDataSet)));
+            var settings = new CohensSettings();
+            var effectSizeCalculator = new CohensCalculator(_excelDataSet, settings);
+            var resultExporter = new CohensResultExporter(settings);
+            var cohensSetupVM = new CohensSetupVM(_excelDataSet, settings);
+
+            ShowEffectSizeWindow(effectSizeCalculator, resultExporter, cohensSetupVM);
         }
 
         private void OnCalculateHedges()
         {
+            var settings = new HedgesSettings();
+            var effectSizeCalculator = new HedgesCalculator(_excelDataSet, settings);
+            var resultExporter = new HedgesResultExporter(settings);
+            var hedgesSetupVM = new HedgesSetupVM(_excelDataSet, settings);
 
+            ShowEffectSizeWindow(effectSizeCalculator, resultExporter, hedgesSetupVM);
+        }
+
+        private void ShowEffectSizeWindow(
+            IEffectSizeCalculator effectSizeCalculator, 
+            IResultExporter resultExporter,
+            IEffectSizeSetupVM hedgesSetupVM)
+        {
+            var effectSizeVM = new EffectSizeVM(
+                effectSizeCalculator, _saveFileService, resultExporter, hedgesSetupVM);
+            hedgesSetupVM.CalculateCommand = effectSizeVM.CalculateCommand;
+            RaiseDialogRequested(new ShowDialogEventArgs(effectSizeVM));
         }
     }
 }

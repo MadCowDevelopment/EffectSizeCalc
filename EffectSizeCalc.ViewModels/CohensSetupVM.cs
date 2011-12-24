@@ -7,7 +7,7 @@ using EffectSizeCalc.ViewModels.Framework;
 
 namespace EffectSizeCalc.ViewModels
 {
-    public class CohensSetupVM : BaseViewModel
+    public class CohensSetupVM : BaseViewModel, IEffectSizeSetupVM
     {
         private readonly CohensSettings _cohensSettings;
 

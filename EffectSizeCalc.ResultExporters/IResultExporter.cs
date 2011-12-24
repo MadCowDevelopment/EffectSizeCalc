@@ -4,6 +4,6 @@ namespace EffectSizeCalc.ResultExporters
 {
     public interface IResultExporter
     {
-        void SaveResult(EffectSizeResult result, CohensSettings settings, string filename);
+        void SaveResult(EffectSizeResult result, string filename);
     }
 }

@@ -41,7 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CohensCalculator.cs" />
-    <Compile Include="ICohensCalculator.cs" />
+    <Compile Include="HedgesCalculator.cs" />
+    <Compile Include="IEffectSizeCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

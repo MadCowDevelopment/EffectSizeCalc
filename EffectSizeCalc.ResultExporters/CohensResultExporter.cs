@@ -4,25 +4,32 @@ using EffectSizeCalc.Models;
 
 namespace EffectSizeCalc.ResultExporters
 {
-    public class ResultExporter : IResultExporter
+    public class CohensResultExporter : IResultExporter
     {
-        public void SaveResult(EffectSizeResult result, CohensSettings settings, string filename)
+        private readonly CohensSettings _cohensSettings;
+
+        public CohensResultExporter(CohensSettings cohensSettings)
+        {
+            _cohensSettings = cohensSettings;
+        }
+
+        public void SaveResult(EffectSizeResult result, string filename)
         {
             using (var streamWriter = new StreamWriter(filename))
             {
                 streamWriter.WriteLine("Effektstärkeergebnisse vom {0}:", DateTime.Now);
                 streamWriter.WriteLine();
 
-                streamWriter.WriteLine("1. Variable: {0}", settings.SelectedFirstVariable);
-                streamWriter.WriteLine("2. Variable: {0}", settings.SelectedSecondVariable);
-                if(!string.IsNullOrEmpty(settings.SelectedFilterVariable))
+                streamWriter.WriteLine("1. Variable: {0}", _cohensSettings.SelectedFirstVariable);
+                streamWriter.WriteLine("2. Variable: {0}", _cohensSettings.SelectedSecondVariable);
+                if (!string.IsNullOrEmpty(_cohensSettings.SelectedFilterVariable))
                 {
-                    streamWriter.WriteLine("Filtervariable: {0}", settings.SelectedFilterVariable);
-                    streamWriter.WriteLine("Filter: {0}", settings.Filter);
+                    streamWriter.WriteLine("Filtervariable: {0}", _cohensSettings.SelectedFilterVariable);
+                    streamWriter.WriteLine("Filter: {0}", _cohensSettings.Filter);
                 }
 
                 streamWriter.Write("Gleiche Varianzen: ");
-                streamWriter.WriteLine(settings.SameVariances ? "ja" : "nein");
+                streamWriter.WriteLine(_cohensSettings.SameVariances ? "ja" : "nein");
 
                 streamWriter.WriteLine();
 

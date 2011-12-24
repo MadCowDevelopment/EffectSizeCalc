@@ -40,7 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ResultExporter.cs" />
+    <Compile Include="CohensResultExporter.cs" />
+    <Compile Include="HedgesResultExporter.cs" />
     <Compile Include="IResultExporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -6,27 +6,37 @@ using EffectSizeCalc.Models;
 
 namespace EffectSizeCalc.Calculators
 {
-    public class CohensCalculator : ICohensCalculator
+    public class CohensCalculator : IEffectSizeCalculator
     {
-        public EffectSizeResult Calculate(CohensSettings cohensSettings, ExcelDataSet excelDataSet)
+        private readonly ExcelDataSet _excelDataSet;
+
+        private readonly CohensSettings _cohensSettings;
+
+        public CohensCalculator(ExcelDataSet excelDataSet, CohensSettings cohensSettings)
+        {
+            _excelDataSet = excelDataSet;
+            _cohensSettings = cohensSettings;
+        }
+
+        public EffectSizeResult CalculateEffectSize()
         {
             var result = new EffectSizeResult();
 
-            var firstVariableValues = GetVariableValues(cohensSettings.SelectedFirstVariable, excelDataSet);
-            var secondVariableValues = GetVariableValues(cohensSettings.SelectedSecondVariable, excelDataSet);
-            var filterVariableValues = GetFilterVariableValues(cohensSettings, excelDataSet);
+            var firstVariableValues = GetVariableValues(_cohensSettings.SelectedFirstVariable, _excelDataSet);
+            var secondVariableValues = GetVariableValues(_cohensSettings.SelectedSecondVariable, _excelDataSet);
+            var filterVariableValues = GetFilterVariableValues(_cohensSettings, _excelDataSet);
 
             RemoveEmptyVariables(firstVariableValues, secondVariableValues, filterVariableValues);
 
             if (filterVariableValues != null)
             {
-                ApplyFilterToVariables(cohensSettings.Filter, firstVariableValues, secondVariableValues, filterVariableValues);
+                ApplyFilterToVariables(_cohensSettings.Filter, firstVariableValues, secondVariableValues, filterVariableValues);
             }
 
             result.MeanValue1 = CalculateMeanValue(firstVariableValues);
             result.MeanValue2 = CalculateMeanValue(secondVariableValues);
 
-            var sigma = CalculateSigma(cohensSettings.SameVariances, firstVariableValues, secondVariableValues, result);
+            var sigma = CalculateSigma(_cohensSettings.SameVariances, firstVariableValues, secondVariableValues, result);
 
             result.Result = (result.MeanValue1 - result.MeanValue2) / sigma;
 
@@ -180,6 +190,11 @@ namespace EffectSizeCalc.Calculators
 
         private List<double> GetVariableValues(string selectedFilterVariable, ExcelDataSet excelDataSet)
         {
+            if (string.IsNullOrEmpty(selectedFilterVariable))
+            {
+                return null;
+            }
+
             var result = new List<double>();
             var indexOfColumn = excelDataSet.TrialDataRows[0].Values.ToList().IndexOf(selectedFilterVariable);
 
