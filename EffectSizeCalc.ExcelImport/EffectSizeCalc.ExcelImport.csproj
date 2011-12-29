@@ -48,6 +48,7 @@
     <Compile Include="CellCoordinateParser.cs" />
     <Compile Include="CellParser.cs" />
     <Compile Include="CellValueParser.cs" />
+    <Compile Include="ColumnReducer.cs" />
     <Compile Include="ExcelCellCoordinates.cs" />
     <Compile Include="ExcelDataRow.cs" />
     <Compile Include="ExcelDataSet.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="ICellCoordinateParser.cs" />
     <Compile Include="ICellParser.cs" />
     <Compile Include="ICellValueParser.cs" />
+    <Compile Include="IColumnReducer.cs" />
     <Compile Include="IExcelImporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

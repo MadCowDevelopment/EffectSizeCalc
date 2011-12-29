@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Input;
 
@@ -19,23 +21,29 @@ namespace EffectSizeCalc.ViewModels
 
         private ObservableCollection<string> _availableFirstValues;
 
-        private ObservableCollection<string> _availableSecondValues; 
+        private ObservableCollection<string> _availableSecondValues;
 
         public HedgesSetupVM(ExcelDataSet excelDataSet, HedgesSettings settings)
         {
             _excelDataSet = excelDataSet;
             _settings = settings;
 
-            AvailableVariables =
-                new ObservableCollection<string>(excelDataSet.TrialDataRows[0].Values.Select(p => p.ToString()));
-            AvailableVariables.Insert(0, string.Empty);
-
-            AvailableGroups =
-                new ObservableCollection<string>(excelDataSet.TrialDataRows[0].Values.Select(p => p.ToString()));
-            AvailableGroups.Insert(0, string.Empty);
+            var availableVariableNames = GetAvailableVariableNames().ToList();
+            AvailableVariables = new ObservableCollection<string>(availableVariableNames);
+            AvailableGroups = new ObservableCollection<string>(availableVariableNames);
 
             AvailableFirstValues = new ObservableCollection<string>();
             AvailableSecondValues = new ObservableCollection<string>();
+        }
+
+        private IEnumerable<string> GetAvailableVariableNames()
+        {
+            var result =
+                new ObservableCollection<string>(
+                    _excelDataSet.TrialDataRows[0].Values.Select(p => p.ToString(CultureInfo.InvariantCulture)));
+            result.Insert(0, string.Empty);
+
+            return result;
         }
 
         public ICommand CalculateCommand
@@ -82,6 +90,8 @@ namespace EffectSizeCalc.ViewModels
                 {
                     AvailableFirstValues = new ObservableCollection<string>();
                     AvailableSecondValues = new ObservableCollection<string>();
+                    SelectedFirstValue = 0;
+                    SelectedSecondValue = 0;
                 }
                 else
                 {
@@ -95,17 +105,26 @@ namespace EffectSizeCalc.ViewModels
                         }
                     }
 
-                    if(indexOfSelectedGroup == -1)
+                    if (indexOfSelectedGroup == -1)
                     {
                         throw new InvalidOperationException("Couldn't find column index for selected group.");
                     }
 
-                    AvailableFirstValues =
-                        new ObservableCollection<string>(
-                            _excelDataSet.TrialDataRows.Select(p => p.Values[indexOfSelectedGroup]));
-                    AvailableFirstValues.Insert(0, string.Empty);
+                    var valuesInSelectedGroup = GetDistinctValuesInSelectedGroup(indexOfSelectedGroup).ToList();
+
+                    AvailableFirstValues = new ObservableCollection<string>(valuesInSelectedGroup);
+                    AvailableSecondValues = new ObservableCollection<string>(valuesInSelectedGroup);
                 }
             }
+        }
+
+        private IEnumerable<string> GetDistinctValuesInSelectedGroup(int indexOfSelectedGroup)
+        {
+            var result = _excelDataSet.TrialDataRows.Select(p => p.Values[indexOfSelectedGroup]).Distinct().ToList();
+            result.RemoveAt(0);
+            result.Insert(0, string.Empty);
+
+            return result;
         }
 
         public double SelectedFirstValue
@@ -145,7 +164,7 @@ namespace EffectSizeCalc.ViewModels
             {
                 return _availableFirstValues;
             }
-            
+
             private set
             {
                 _availableFirstValues = value;

@@ -18,7 +18,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
             
-        <TextBlock Grid.Column="0" Grid.Row="0" Margin="3" Text="Cohen's d:"/>
+        <TextBlock Grid.Column="0" Grid.Row="0" Margin="3" Text="Effect size:"/>
         <TextBlock Grid.Column="1" Grid.Row="0" Margin="3" Text="{Binding Result.Result}"/>
 
         <TextBlock Grid.Column="0" Grid.Row="1" Margin="3" Text="Konfidenzintervall:"/>

@@ -13,8 +13,13 @@ namespace EffectSizeCalc.ViewModels
     public class MainWindowVM : SimpleViewModel
     {
         private readonly IOpenFileService _openFileService;
+
         private readonly ISaveFileService _saveFileService;
+
         private readonly IExcelImporter _excelImporter;
+
+        private readonly IColumnReducer _columnReducer;
+
         private readonly IDynamicListGenerator _dynamicListGenerator;
 
         private ICommand _openCommand;
@@ -31,11 +36,13 @@ namespace EffectSizeCalc.ViewModels
             IOpenFileService openFileService,
             ISaveFileService saveFileService,
             IExcelImporter excelImporter, 
+            IColumnReducer columnReducer,
             IDynamicListGenerator dynamicListGenerator)
         {
             _openFileService = openFileService;
             _saveFileService = saveFileService;
             _excelImporter = excelImporter;
+            _columnReducer = columnReducer;
             _dynamicListGenerator = dynamicListGenerator;
 
             // TODO: Unomment in release!
@@ -76,9 +83,11 @@ namespace EffectSizeCalc.ViewModels
         private void OpenExcelSheet(string filename)
         {
             _excelDataSet = _excelImporter.GetCellValues(filename);
+            _columnReducer.ReduceToColumnsWithDoubleValues(_excelDataSet);
             Expando = _dynamicListGenerator.CreateDynamicData(_excelDataSet);
         }
 
+        
         public event EventHandler<ShowDialogEventArgs> DialogRequest;
 
         public void RaiseDialogRequested(ShowDialogEventArgs e)

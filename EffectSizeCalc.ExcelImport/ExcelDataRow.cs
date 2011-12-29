@@ -8,6 +8,6 @@
         }
 
         public int RowNumber { get; set; }
-        public string[] Values { get; private set; }
+        public string[] Values { get; set; }
     }
 }

@@ -23,13 +23,20 @@ namespace EffectSizeCalc
             var openFileService = CreateOpenFileService();
             var saveFileService = CreateSaveFileService();
             var excelImporter = CreateExcelImporter();
+            var columnReducer = CreateColumnReducer();
             var dynamicListGenerator = CreateDynamicListGenerator();
-            _mainWindowVM = new MainWindowVM(openFileService, saveFileService, excelImporter, dynamicListGenerator);
+            _mainWindowVM = new MainWindowVM(
+                openFileService, saveFileService, excelImporter, columnReducer, dynamicListGenerator);
 
             _mainWindowVM.CloseRequest += MainWindowVMCloseRequest;
             _mainWindowVM.DialogRequest += MainWindowVMDialogRequested;
 
             DataContext = _mainWindowVM;
+        }
+
+        private static IColumnReducer CreateColumnReducer()
+        {
+            return new ColumnReducer();
         }
 
         private static ISaveFileService CreateSaveFileService()
